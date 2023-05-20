@@ -1,7 +1,10 @@
+import Todo from "@/app/components/Todo";
+
 const Todos = () => {
   return (
-    <div className="p-4 border-2">
-      <h1>Show todo items</h1>
+    <div className="p-4 border-2 rounded-md">
+      <h1 className="uppercase font-bold text-md mb-2">Todos</h1>
+      <Todo />
     </div>
   );
 };
