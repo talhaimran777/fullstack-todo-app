@@ -1,4 +1,4 @@
-import type { Todo } from "./todo";
+import data from "./data";
 
 export async function GET(request: Request) {
   return new Response(JSON.stringify(data ?? null), {
@@ -9,25 +9,17 @@ export async function GET(request: Request) {
   });
 }
 
-const data: Todo[] = [
-  {
-    id: "1",
-    name: "Play basketball!",
-    status: "completed",
-  },
-  {
-    id: "2",
-    name: "Play Cricket",
+export async function POST(request: Request) {
+  data.push({
+    id: "10",
+    name: "Test Todo",
     status: "active",
-  },
-  {
-    id: "3",
-    name: "Play Guitar",
-    status: "active",
-  },
-  {
-    id: "4",
-    name: "Do exercise!",
-    status: "completed",
-  },
-];
+  });
+
+  return new Response(JSON.stringify(data[data.length - 1] ?? null), {
+    status: 200,
+    headers: {
+      "content-type": "application/json",
+    },
+  });
+}

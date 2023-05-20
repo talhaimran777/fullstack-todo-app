@@ -2,7 +2,10 @@ import Todo from "@/app/components/Todo";
 import { Todo as TodoItem } from "../api/todos/todo";
 
 const getTodos = async (): Promise<TodoItem[]> => {
-  const res = await fetch(`http://localhost:3000/api/todos`);
+  const res = await fetch(`http://localhost:3000/api/todos`, {
+    cache: "no-store",
+  });
+
   return res.json();
 };
 

@@ -1,4 +1,14 @@
-const TodoCreator = () => {
+"use client";
+
+const createTodo = async () => {
+  const res = await fetch(`http://localhost:3000/api/todos`, {
+    method: "post",
+  });
+
+  return res.json();
+};
+
+const TodoCreator = async () => {
   return (
     <>
       <input
@@ -6,6 +16,15 @@ const TodoCreator = () => {
         type="text"
         placeholder="Create a todo item!"
       />
+      <button
+        onClick={async () => {
+          const todosData = createTodo();
+          const [todo] = await Promise.all([todosData]);
+          console.log(todo);
+        }}
+      >
+        Create
+      </button>
     </>
   );
 };
