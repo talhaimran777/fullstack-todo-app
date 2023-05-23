@@ -1,12 +1,16 @@
-import Todos from "@/app/components/Todos";
-import TodoCreator from "@/app/components/TodoCreator";
-import TodoFilter from "@/app/components/TodoFilter";
+import Todos from "@/components/Todos";
+import TodoCreator from "@/components/TodoCreator";
+import TodoFilter from "@/components/TodoFilter";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
     <>
       <TodoCreator />
-      <Todos />
+      <Suspense fallback={<h1>Loading todo items!</h1>}>
+        {/* @ts-expect-error Async Server Component */}
+        <Todos />
+      </Suspense>
       <TodoFilter />
     </>
   );
