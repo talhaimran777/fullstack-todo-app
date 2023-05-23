@@ -1,3 +1,5 @@
+import { Todo } from "./todo";
+
 const data: Todo[] = [
   {
     id: "1",
