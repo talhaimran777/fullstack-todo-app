@@ -1,19 +1,16 @@
-import Todos from "@/components/Todos";
+import Header from "@/components/Header";
 import TodoCreator from "@/components/TodoCreator";
 import TodoFilter from "@/components/TodoFilter";
-import { Suspense } from "react";
-import Link from "next/link";
+import Todos from "@/components/Todos";
 
 export default function Home() {
   return (
     <>
+      <Header />
       <TodoCreator />
-      <Suspense fallback={<h1>Loading todo items!</h1>}>
-        {/* @ts-expect-error Async Server Component */}
-        <Todos />
-      </Suspense>
+      {/* @ts-expect-error Async Server Component */}
+      <Todos />
       <TodoFilter />
-      <Link href={"/jotai"}>Go to jotai page</Link>
     </>
   );
 }

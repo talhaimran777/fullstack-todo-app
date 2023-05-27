@@ -2,9 +2,9 @@
 
 import Todo from "@/components/Todo";
 import { useTodos } from "@/context/todos.provider";
-import { FC, useEffect } from "react";
+import { useEffect } from "react";
 
-const TodosDisplayer: FC<{ todos: Todo[] }> = ({ todos }) => {
+const TodosDisplayer = ({ todos }: { todos: Todo[] }) => {
   const { dispatch, state } = useTodos();
 
   useEffect(() => {
@@ -13,8 +13,7 @@ const TodosDisplayer: FC<{ todos: Todo[] }> = ({ todos }) => {
   }, [todos]);
 
   return (
-    <div className="p-4 border-2 rounded-md">
-      <h1 className="uppercase font-bold text-md mb-2">Todos</h1>
+    <div>
       {state.todos?.map((todo) => (
         <Todo key={todo.id} todo={todo} />
       ))}

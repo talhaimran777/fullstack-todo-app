@@ -2,7 +2,6 @@ import "./globals.css";
 import { Josefin_Slab } from "next/font/google";
 import { TodosProvider } from "@/context/todos.provider";
 import Providers from "@/lib/providers";
-import Navbar from "@/components/Navbar";
 
 const inter = Josefin_Slab({ subsets: ["latin"] });
 
@@ -20,10 +19,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <Navbar />
-          <TodosProvider>
-            <div className="p-2">{children}</div>
-          </TodosProvider>
+          <TodosProvider>{children}</TodosProvider>
         </Providers>
       </body>
     </html>
