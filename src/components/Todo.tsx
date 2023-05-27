@@ -31,7 +31,7 @@ const Todo: FC<TodoProps> = ({ todo }) => {
   return (
     <div className="bg-white flex justify-between items-center py-4 px-5 border-b-2 border-slate-100">
       <div className="flex justify-between items-center gap-3">
-        <input className="focus:ring-0 rounded-full focus:outline-none focus:ring-transparent" type="checkbox" defaultChecked={todo.status == "completed"} />
+        <input type="checkbox" defaultChecked={todo.status == "completed"} />
         <p className="text-xs">{todo.name}</p>
       </div>
       <Image

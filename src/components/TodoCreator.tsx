@@ -22,7 +22,7 @@ const TodoCreator = () => {
     <div className="mx-6 -mt-24">
       <form onSubmit={handleSubmit}>
         <input
-          className="text-xs py-2 px-4 border-2 w-full rounded-md mb-5 outline-none"
+          className="text-xs py-2 px-4 border-2 w-full mb-5 border-none outline-none"
           placeholder="Create a todo item!"
           type="text"
         />

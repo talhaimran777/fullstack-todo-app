@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Todo } from "./todo";
 
 export async function getTodos() {
-  const res = await fetch(`${getBaseUrl()}/api/todos?delay=2000`, {
+  const res = await fetch(`${getBaseUrl()}/api/todos`, {
     cache: "no-store",
   });
 
