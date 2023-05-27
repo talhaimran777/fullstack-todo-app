@@ -21,9 +21,9 @@ export default async function RootLayout({
       <body className={inter.className}>
         <Providers>
           <Navbar />
-          <div className="p-2">
-            <TodosProvider>{children}</TodosProvider>
-          </div>
+          <TodosProvider>
+            <div className="p-2">{children}</div>
+          </TodosProvider>
         </Providers>
       </body>
     </html>

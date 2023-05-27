@@ -2,6 +2,7 @@ import Todos from "@/components/Todos";
 import TodoCreator from "@/components/TodoCreator";
 import TodoFilter from "@/components/TodoFilter";
 import { Suspense } from "react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         <Todos />
       </Suspense>
       <TodoFilter />
+      <Link href={"/jotai"}>Go to jotai page</Link>
     </>
   );
 }
