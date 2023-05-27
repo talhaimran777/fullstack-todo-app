@@ -11,9 +11,5 @@ export async function createTodo() {
 
   const todo = (await res.json()) as Todo;
 
-  if (Object.keys(todo).length < 1) {
-    notFound();
-  }
-
   return todo;
 }

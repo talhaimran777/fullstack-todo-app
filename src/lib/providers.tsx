@@ -2,16 +2,20 @@
 
 import React, { ReactNode } from "react";
 import { SessionProvider } from "next-auth/react";
-import { Provider } from "jotai";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Provider as JotaiProvider } from "jotai";
 
 interface Props {
   children: ReactNode;
 }
 
 const Providers = ({ children }: Props) => {
+  const [queryClient] = React.useState(() => new QueryClient());
   return (
     <SessionProvider>
-      <Provider>{children}</Provider>
+      <QueryClientProvider client={queryClient}>
+        <JotaiProvider>{children}</JotaiProvider>
+      </QueryClientProvider>
     </SessionProvider>
   );
 };

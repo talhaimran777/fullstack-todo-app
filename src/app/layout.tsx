@@ -1,7 +1,7 @@
-import "./globals.css";
-import { Josefin_Slab } from "next/font/google";
 import { TodosProvider } from "@/context/todos.provider";
 import Providers from "@/lib/providers";
+import { Josefin_Slab } from "next/font/google";
+import "./globals.css";
 
 const inter = Josefin_Slab({ subsets: ["latin"] });
 

@@ -4,12 +4,12 @@ import React, { Dispatch, createContext, useReducer } from "react";
 import { Todo } from "@/app/api/todos/todo";
 
 type StateType = {
-  todos: Todo[];
+  todos: Todo[] | undefined;
 };
 
 type ActionType = {
   type: string;
-  payload: Todo[];
+  payload: Todo[] | undefined;
 };
 
 const initialState: StateType = {
