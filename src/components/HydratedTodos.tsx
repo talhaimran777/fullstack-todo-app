@@ -1,13 +1,16 @@
-import { NEXTAUTH_OPTIONS } from "@/app/api/auth/[...nextauth]/route";
+"use client";
+
 import { getTodos } from "@/app/api/todos/getTodos";
 import getQueryClient from "@/app/getQueryClient";
+import authAtom from "@/atoms/auth";
 import { dehydrate, Hydrate } from "@tanstack/react-query";
-import { getServerSession } from "next-auth";
+import { useAtomValue } from "jotai";
 import Todos from "./Todos";
 
 const HydratedTodos = async () => {
-  const session = await getServerSession(NEXTAUTH_OPTIONS);
-  if (session?.user?.email) {
+  const auth = useAtomValue(authAtom);
+
+  if (auth.status === "authenticated") {
     const queryClient = getQueryClient();
     await queryClient.prefetchQuery({
       queryKey: ["todos"],
