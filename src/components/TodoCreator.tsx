@@ -1,10 +1,13 @@
 "use client";
 
 import { createTodo } from "@/app/api/todos/createTodo";
+import authAtom from "@/atoms/auth";
 import { useTodos } from "@/context/todos.provider";
+import { useAtom } from "jotai";
 
 const TodoCreator = () => {
   const { state, dispatch } = useTodos();
+  const [auth] = useAtom(authAtom);
 
   // TODO: Update any to proper type
   const handleSubmit = async (e: any) => {

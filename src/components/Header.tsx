@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Moon from "public/icon-moon.svg";
 
@@ -15,12 +15,18 @@ const Header = () => {
       <div className="flex gap-3 justify-between items-start">
         {status === "authenticated" && (
           <Image
+            onClick={() => signOut()}
             className="w-7 h-7 rounded-full"
             src={data?.user?.image as string}
             alt="Profile Image"
             width={10}
             height={10}
           />
+        )}
+        {status === "unauthenticated" && (
+          <button className="text-white font-black" onClick={() => signIn()}>
+            Login
+          </button>
         )}
         <Image src={Moon} alt="Moon Icon" />
       </div>

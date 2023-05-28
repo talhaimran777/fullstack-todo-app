@@ -1,18 +1,29 @@
-import {getTodos} from "@/app/api/todos/getTodos";
+import { NEXTAUTH_OPTIONS } from "@/app/api/auth/[...nextauth]/route";
+import { getTodos } from "@/app/api/todos/getTodos";
 import getQueryClient from "@/app/getQueryClient";
-import {dehydrate, Hydrate} from "@tanstack/react-query";
+import { dehydrate, Hydrate } from "@tanstack/react-query";
+import { getServerSession } from "next-auth";
 import Todos from "./Todos";
 
 const HydratedTodos = async () => {
-  const queryClient = getQueryClient();
-  await queryClient.prefetchQuery(["todos"], getTodos);
-  const dehydratedState = dehydrate(queryClient);
+  const session = await getServerSession(NEXTAUTH_OPTIONS);
+  if (session?.user?.email) {
+    const queryClient = getQueryClient();
+    await queryClient.prefetchQuery({
+      queryKey: ["todos"],
+      queryFn: getTodos,
+    });
 
-  return (
-    <Hydrate state={dehydratedState}>
-      <Todos />
-    </Hydrate>
-  );
+    const dehydratedState = dehydrate(queryClient);
+
+    return (
+      <Hydrate state={dehydratedState}>
+        <Todos />
+      </Hydrate>
+    );
+  }
+
+  return null;
 };
 
 export default HydratedTodos;
