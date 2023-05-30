@@ -1,18 +1,33 @@
 import { prisma } from "@/lib/prisma";
+import { getServerSession } from "next-auth";
+import { NEXTAUTH_OPTIONS } from "../auth/[...nextauth]/route";
 import data from "./data";
 
 export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
+  const session = await getServerSession(NEXTAUTH_OPTIONS);
 
-  const delay = searchParams.get("delay");
+  if (session?.user?.email) {
+    const { searchParams } = new URL(request.url);
 
-  if (delay) {
-    await new Promise((resolve) => setTimeout(resolve, Number(delay)));
+    const delay = searchParams.get("delay");
+
+    if (delay) {
+      await new Promise((resolve) => setTimeout(resolve, Number(delay)));
+    }
+
+    const todos = await prisma.todo.findMany({
+      where: { userId: session.user.id },
+    });
+
+    return new Response(JSON.stringify(todos ?? []), {
+      status: 200,
+      headers: {
+        "content-type": "application/json",
+      },
+    });
   }
 
-  const todos = await prisma.todo.findMany();
-
-  return new Response(JSON.stringify(todos ?? []), {
+  return new Response(JSON.stringify([]), {
     status: 200,
     headers: {
       "content-type": "application/json",

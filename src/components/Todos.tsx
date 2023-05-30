@@ -7,7 +7,6 @@ import { useSession } from "next-auth/react";
 import TodosSummary from "./TodosSummary";
 
 const Todos = () => {
-  // const auth = useAtomValue(authAtom);
   const { data: sessionData } = useSession();
   const { data: todos } = useQuery({
     queryKey: ["todos"],
@@ -17,8 +16,16 @@ const Todos = () => {
 
   return (
     <div className="shadow-lg mx-6">
-      <TodosDisplayer todos={todos} />
-      <TodosSummary />
+      {todos && todos.length > 0 ? (
+        <>
+          <TodosDisplayer todos={todos} />
+          <TodosSummary />
+        </>
+      ) : (
+        <div className="bg-white px-6 py-4">
+          <p>No todo items found!</p>
+        </div>
+      )}
     </div>
   );
 };

@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import HydratedTodos from "@/components/HydratedTodos";
 import TodoCreator from "@/components/TodoCreator";
 import TodoFilter from "@/components/TodoFilter";
+import { useTodos } from "@/context/todos.provider";
 import { useAtomValue } from "jotai";
 import { Suspense } from "react";
 
@@ -14,6 +15,7 @@ const TodosLoader = () => {
 
 export default function Home() {
   const auth = useAtomValue(authAtom);
+  const { state } = useTodos();
 
   return (
     <>
@@ -29,7 +31,7 @@ export default function Home() {
             {/* @ts-expect-error */}
             <HydratedTodos />
           </Suspense>
-          <TodoFilter />
+          {state.todos && state.todos.length > 0 && <TodoFilter />}
         </>
       )}
 
