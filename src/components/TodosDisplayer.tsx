@@ -1,20 +1,21 @@
 "use client";
 
+import todosAtom from "@/atoms/todos";
 import Todo from "@/components/Todo";
-import { useTodos } from "@/context/todos.provider";
+import { useAtom } from "jotai";
 import { useEffect } from "react";
 
 const TodosDisplayer = ({ todos }: { todos: Todo[] | undefined }) => {
-  const { dispatch, state } = useTodos();
+  const [todosAtomValue, setTodosAtomValue] = useAtom(todosAtom);
 
   useEffect(() => {
     if (todos && todos.length < 0) return;
-    dispatch({ type: "SET_TODOS", payload: todos });
+    setTodosAtomValue(todos as Todo[]);
   }, [todos]);
 
   return (
     <div>
-      {state.todos?.map((todo) => (
+      {todosAtomValue.map((todo) => (
         <Todo key={todo.id} todo={todo} />
       ))}
     </div>

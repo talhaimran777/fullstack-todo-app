@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { NEXTAUTH_OPTIONS } from "../auth/[...nextauth]/route";
-import data from "./data";
 
 export async function GET(request: Request) {
   const session = await getServerSession(NEXTAUTH_OPTIONS);
@@ -36,7 +35,17 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  return new Response(JSON.stringify(data[data.length - 1] ?? null), {
+  const { input } = (await request.json()) as { input: string };
+
+  const todo = await prisma.todo.create({
+    data: {
+      name: input,
+      // TODO: Remove hard coded user id
+      userId: "cli1a76eu0000g3g7e04ts9ay",
+    },
+  });
+
+  return new Response(JSON.stringify(todo ?? null), {
     status: 200,
     headers: {
       "content-type": "application/json",

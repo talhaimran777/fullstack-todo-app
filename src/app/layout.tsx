@@ -1,5 +1,4 @@
 import AuthWrapper from "@/components/AuthWrapper";
-import { TodosProvider } from "@/context/todos.provider";
 import Providers from "@/lib/providers";
 import { Josefin_Slab } from "next/font/google";
 import "./globals.css";
@@ -20,9 +19,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <AuthWrapper>
-            <TodosProvider>{children}</TodosProvider>
-          </AuthWrapper>
+          <AuthWrapper>{children}</AuthWrapper>
         </Providers>
       </body>
     </html>

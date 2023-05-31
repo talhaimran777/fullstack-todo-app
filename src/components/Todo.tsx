@@ -2,7 +2,8 @@
 
 import { deleteTodo } from "@/app/api/todos/deleteTodo";
 import { Todo } from "@/app/api/todos/todo";
-import { useTodos } from "@/context/todos.provider";
+import todosAtom from "@/atoms/todos";
+import { useAtom } from "jotai";
 import Image from "next/image";
 import Cross from "public/icon-cross.svg";
 import { FC } from "react";
@@ -12,19 +13,16 @@ type TodoProps = {
 };
 
 const Todo: FC<TodoProps> = ({ todo }) => {
-  const { dispatch, state } = useTodos();
+  const [todos, setTodos] = useAtom(todosAtom);
 
   const removeTodo = async (todo: Todo) => {
     const deletedTodoResponse = await deleteTodo(todo);
     if (deletedTodoResponse?.deletedTodoId) {
-      dispatch({
-        type: "SET_TODOS",
-        payload: [
-          ...state.todos.filter(
-            (todo) => todo.id !== deletedTodoResponse.deletedTodoId
-          ),
-        ],
-      });
+      setTodos([
+        ...todos.filter(
+          (todo) => todo.id !== deletedTodoResponse.deletedTodoId
+        ),
+      ]);
     }
   };
 
