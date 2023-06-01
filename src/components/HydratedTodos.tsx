@@ -1,16 +1,11 @@
-"use client";
-
 import { getTodos } from "@/app/api/todos/getTodos";
 import getQueryClient from "@/app/getQueryClient";
-import authAtom from "@/atoms/auth";
 import { dehydrate, Hydrate } from "@tanstack/react-query";
-import { useAtomValue } from "jotai";
+import { Session } from "next-auth";
 import Todos from "./Todos";
 
-const HydratedTodos = async () => {
-  const auth = useAtomValue(authAtom);
-
-  if (auth.status === "authenticated") {
+const HydratedTodos = async ({ session }: { session: Session }) => {
+  if (Object.keys(session).length > 0) {
     const queryClient = getQueryClient();
     await queryClient.prefetchQuery({
       queryKey: ["todos"],

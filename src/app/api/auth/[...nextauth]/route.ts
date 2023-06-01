@@ -4,6 +4,9 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
 
 export const NEXTAUTH_OPTIONS = {
+  pages: {
+    signIn: "/auth/signin",
+  },
   callbacks: {
     // TODO: update any to proper type
     session({ session, user }: { session: any; user: any }) {
