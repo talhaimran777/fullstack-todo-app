@@ -1,5 +1,5 @@
-import AuthWrapper from "@/components/AuthWrapper";
 import Providers from "@/lib/providers";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Josefin_Slab } from "next/font/google";
 import "./globals.css";
 
@@ -18,9 +18,9 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>
-          <AuthWrapper>{children}</AuthWrapper>
-        </Providers>
+        {/* <ClerkProvider> */}
+          <Providers>{children}</Providers>
+        {/* </ClerkProvider> */}
       </body>
     </html>
   );

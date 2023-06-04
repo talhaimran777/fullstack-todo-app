@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { authMiddleware } from "@clerk/nextjs";
 
-export async function middleware(request: NextRequest) {
-  // TODO: Add middleware logic here
-  return NextResponse.next();
-}
+export default authMiddleware();
+
+export const config = {
+  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
+};

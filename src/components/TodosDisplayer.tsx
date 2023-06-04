@@ -8,14 +8,14 @@ import { useEffect } from "react";
 const TodosDisplayer = ({ todos }: { todos: Todo[] | undefined }) => {
   const [todosAtomValue, setTodosAtomValue] = useAtom(todosAtom);
 
-  useEffect(() => {
-    if (todos && todos.length < 0) return;
-    setTodosAtomValue(todos as Todo[]);
-  }, [todos]);
+  // useEffect(() => {
+  //   if (todos && todos.length < 0) return;
+  //   setTodosAtomValue(todos as Todo[]);
+  // }, [todos]);
 
   return (
     <div>
-      {todosAtomValue.map((todo) => (
+      {todos?.map((todo) => (
         <Todo key={todo.id} todo={todo} />
       ))}
     </div>

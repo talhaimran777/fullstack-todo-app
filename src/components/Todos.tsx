@@ -8,13 +8,13 @@ import TodosSummary from "./TodosSummary";
 const Todos = () => {
   const { data: todos } = useQuery({
     queryKey: ["todos"],
-    queryFn: getTodos
+    queryFn: getTodos,
   });
 
   return (
     <div className="shadow-lg mx-6">
       <>
-        <TodosDisplayer todos={todos} />
+        {todos && todos.length > 0 && <TodosDisplayer todos={todos} />}
         <TodosSummary />
       </>
     </div>

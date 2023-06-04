@@ -9,11 +9,10 @@ export async function GET(request: Request) {
     await new Promise((resolve) => setTimeout(resolve, Number(delay)));
   }
 
-  const todos = await prisma.todo.findMany({
-    // TODO: Remove hard coded user id
-    where: { userId: "cli1a76eu0000g3g7e04ts9ay" },
-  });
+  const todos = await prisma.todo.findMany();
 
+  console.log("YOYO, Query Result", todos ?? []);
+  
   return new Response(JSON.stringify(todos ?? []), {
     status: 200,
     headers: {
