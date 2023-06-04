@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import HydratedTodos from "@/components/HydratedTodos";
 import TodoCreator from "@/components/TodoCreator";
 import TodoFilter from "@/components/TodoFilter";
-import { auth } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
@@ -11,8 +11,11 @@ const TodosLoader = () => {
 };
 
 export default async function Home() {
-  // const { userId } = await auth();
-  // if (!userId) redirect("/auth/signin?callbackUrl=/");
+  const user = await currentUser();
+
+  if (!user?.id) {
+    redirect("/sign-in?redirectUrl=/");
+  }
 
   return (
     <>

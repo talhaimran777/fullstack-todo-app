@@ -18,9 +18,9 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* <ClerkProvider> */}
+        <ClerkProvider>
           <Providers>{children}</Providers>
-        {/* </ClerkProvider> */}
+        </ClerkProvider>
       </body>
     </html>
   );

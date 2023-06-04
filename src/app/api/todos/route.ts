@@ -11,8 +11,6 @@ export async function GET(request: Request) {
 
   const todos = await prisma.todo.findMany();
 
-  console.log("YOYO, Query Result", todos ?? []);
-  
   return new Response(JSON.stringify(todos ?? []), {
     status: 200,
     headers: {

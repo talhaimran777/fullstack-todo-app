@@ -14,7 +14,7 @@ const Todos = () => {
   return (
     <div className="shadow-lg mx-6">
       <>
-        {todos && todos.length > 0 && <TodosDisplayer todos={todos} />}
+        <TodosDisplayer todos={todos} />
         <TodosSummary />
       </>
     </div>
