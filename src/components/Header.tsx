@@ -11,7 +11,7 @@ const Header = () => {
       <div className="flex gap-3 justify-between items-start">
         <div className="shadow-lg">
           <SignedIn>
-            <UserButton afterSignOutUrl="/sign-in?redirectUrl=/" />
+            <UserButton afterSignOutUrl="/sign-in?redirectUrl=/" userProfileMode="navigation" userProfileUrl="/user-profile" />
           </SignedIn>
         </div>
         <Image src={Moon} alt="Moon Icon" />
