@@ -1,6 +1,4 @@
-"use client";
-
-import { UserButton } from "@clerk/clerk-react";
+import { SignedIn, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Moon from "public/icon-moon.svg";
 
@@ -11,7 +9,11 @@ const Header = () => {
         Todo
       </h1>
       <div className="flex gap-3 justify-between items-start">
-        <UserButton afterSignOutUrl="/sign-in?redirectUrl=/" />
+        <div className="shadow-lg">
+          <SignedIn>
+            <UserButton afterSignOutUrl="/sign-in?redirectUrl=/" />
+          </SignedIn>
+        </div>
         <Image src={Moon} alt="Moon Icon" />
       </div>
     </div>

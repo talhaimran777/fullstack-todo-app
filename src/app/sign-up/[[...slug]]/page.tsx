@@ -1,4 +1,4 @@
-import { SignIn } from "@clerk/nextjs";
+import { SignUp } from "@clerk/nextjs";
 
 type Props = {
   searchParams: {
@@ -11,7 +11,7 @@ const Page = async ({ searchParams }: Props) => {
 
   return (
     <div className="flex justify-center items-center p-4 h-screen w-screen">
-      <SignIn redirectUrl={redirectUrl || "/"} />
+      <SignUp redirectUrl={redirectUrl || "/"} />
     </div>
   );
 };
