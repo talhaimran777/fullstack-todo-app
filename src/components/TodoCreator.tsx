@@ -26,7 +26,7 @@ const TodoCreator = () => {
   };
 
   return (
-    <div className="mx-6 -mt-24">
+    <div className="mx-6 -mt-24 lg:max-w-4xl lg:mx-auto">
       <form onSubmit={handleSubmit}>
         <input
           className="text-xs py-[14px] px-5 border-2 w-full mb-5 border-none outline-none"

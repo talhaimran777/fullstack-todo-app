@@ -12,7 +12,7 @@ const Todos = () => {
   });
 
   return (
-    <div className="shadow-lg mx-6">
+    <div className="shadow-lg mx-6 lg:max-w-4xl lg:mx-auto">
       <>
         <TodosDisplayer todos={todos} />
         <TodosSummary />
