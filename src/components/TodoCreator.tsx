@@ -1,7 +1,6 @@
 "use client";
 
 import { createTodo } from "@/app/api/todos/createTodo";
-// import authAtom from "@/atoms/auth";
 import todosAtom from "@/atoms/todos";
 import { useMutation } from "@tanstack/react-query";
 import { useAtom } from "jotai";
@@ -15,14 +14,16 @@ const TodoCreator = () => {
     mutationFn: createTodo,
   });
 
-  // const [auth] = useAtom(authAtom);
-
   // TODO: Update any to proper type
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const todo = await createTodoMutaion.mutateAsync(input);
-    setTodosAtomValue([...todosAtomValue, todo]);
-    setInput("");
+    if (input.length > 0) {
+      const todo = await createTodoMutaion.mutateAsync(input);
+      setTodosAtomValue([...todosAtomValue, todo]);
+      setInput("");
+    } else {
+      alert("Please enter a todo item!");
+    }
   };
 
   return (

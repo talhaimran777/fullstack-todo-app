@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
 const TodosLoader = () => {
-  return <p className="mx-6 bg-white p-3 text-md shadow-lg">Loading Todos</p>;
+  return <p className="lg:max-w-4xl lg:mx-auto mx-6 bg-white p-3 text-md shadow-lg">Loading Todos</p>;
 };
 
 export default async function Home() {

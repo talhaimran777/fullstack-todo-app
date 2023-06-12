@@ -13,6 +13,13 @@ const TodosDisplayer = ({ todos }: { todos: Todo[] | undefined }) => {
     setTodosAtomValue(todos as Todo[]);
   }, [todos]);
 
+  if (todosAtomValue && todosAtomValue.length < 1)
+    return (
+      <p className="bg-white p-3 text-md shadow-lg">
+        No todos found!
+      </p>
+    );
+
   return (
     <div>
       {todosAtomValue.map((todo) => (
